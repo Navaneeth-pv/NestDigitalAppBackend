@@ -14,16 +14,19 @@ public class Employee {
 
     private int id;
     private int empcode;
+    private String empname;
     private String empdesignation;
     private String empusername;
     private String emppassword;
 
+
     public Employee() {
     }
 
-    public Employee(int id, int empcode, String empdesignation, String empusername, String emppassword) {
+    public Employee(int id, int empcode, String empname, String empdesignation, String empusername, String emppassword) {
         this.id = id;
         this.empcode = empcode;
+        this.empname = empname;
         this.empdesignation = empdesignation;
         this.empusername = empusername;
         this.emppassword = emppassword;
@@ -43,6 +46,14 @@ public class Employee {
 
     public void setEmpcode(int empcode) {
         this.empcode = empcode;
+    }
+
+    public String getEmpname() {
+        return empname;
+    }
+
+    public void setEmpname(String empname) {
+        this.empname = empname;
     }
 
     public String getEmpdesignation() {
