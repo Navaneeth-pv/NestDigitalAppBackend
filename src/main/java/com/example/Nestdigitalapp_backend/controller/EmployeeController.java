@@ -5,6 +5,7 @@ import com.example.Nestdigitalapp_backend.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -14,8 +15,8 @@ public class EmployeeController {
     private EmployeeDao empdao;
 
     @CrossOrigin(origins = "*")
-    @PostMapping(path = "/addemployee",consumes = "application/json",produces = "application/json")
-    public String AddEmployee(@RequestBody Employee emp){
+    @PostMapping(path = "/addemployee", consumes = "application/json", produces = "application/json")
+    public String AddEmployee(@RequestBody Employee emp) {
         System.out.println(emp.getEmpcode().toString());
         System.out.println(emp.getEmpname().toString());
         System.out.println(emp.getEmpdesignation().toString());
@@ -28,22 +29,28 @@ public class EmployeeController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping(path = "/viewemployee",consumes = "application/json",produces = "application/json")
-    public List<Employee> ViewEmployee(){
+    @GetMapping("/viewemployee")
+    public List<Employee> ViewEmployee() {
         return (List<Employee>) empdao.findAll();
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping(path = "/deleteemployee",consumes = "application/json",produces = "application/json")
-    public String DeleteEmployee(){
-        return "Emp delete page";
+    @PostMapping(path = "/deleteemployee", consumes = "application/json", produces = "application/json")
+    public HashMap<String, String> DeleteEmployee(@RequestBody Employee emp) {
 
+        String empid = String.valueOf(emp.getId());
+        System.out.println(empid);
+        empdao.deleteEmployee(emp.getId());
+        HashMap<String, String> map = new HashMap<>();
+        map.put("status", "success");
+        return map;
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping(path = "/searchemployee",consumes = "application/json",produces = "application/json")
-    public String SearchEmployee(){
-        return "search employee";
+    @PostMapping(path = "/searchemployee", consumes = "application/json", produces = "application/json")
+    public List<Employee> SearchEmployee(@RequestBody Employee e) {
+        String empcode = String.valueOf(e.getEmpcode());
+        System.out.println(empcode);
+        return (List<Employee>) empdao.SearchEmployee(e.getEmpcode());
     }
-
 }
