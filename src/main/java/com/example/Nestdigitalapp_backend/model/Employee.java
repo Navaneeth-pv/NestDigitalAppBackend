@@ -13,7 +13,7 @@ public class Employee {
     @GeneratedValue()
 
     private int id;
-    private int empcode;
+    private String empcode;
     private String empname;
     private String empdesignation;
     private String empusername;
@@ -23,7 +23,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int id, int empcode, String empname, String empdesignation, String empusername, String emppassword) {
+    public Employee(int id, String empcode, String empname, String empdesignation, String empusername, String emppassword) {
         this.id = id;
         this.empcode = empcode;
         this.empname = empname;
@@ -40,11 +40,11 @@ public class Employee {
         this.id = id;
     }
 
-    public int getEmpcode() {
+    public String getEmpcode() {
         return empcode;
     }
 
-    public void setEmpcode(int empcode) {
+    public void setEmpcode(String empcode) {
         this.empcode = empcode;
     }
 
